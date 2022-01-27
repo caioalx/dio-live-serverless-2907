@@ -69,10 +69,10 @@ Atualizar o arquivo serverless.yml
 ```
 resources:
   Resources:
-    ItemTable:
+    ItemTableNew:
       Type: AWS::DynamoDB::Table
       Properties:
-          TableName: ItemTable
+          TableName: ItemTableNew
           BillingMode: PAY_PER_REQUEST
           AttributeDefinitions:
             - AttributeName: id
@@ -97,7 +97,7 @@ resources:
                 - dynamodb:GetItem
                 - dynamodb:Scan
               Resource:
-                - arn:aws:dynamodb:us-east-1:167880115321:table/ItemTable
+                - arn:aws:dynamodb:sa-east-1:117337584632:table/ItemTableNew
   ```
   
    - Instalar dependências
@@ -107,34 +107,34 @@ resources:
    
   - Atualizar lista de funções no arquivo serverless.yml
   ```
-  functions:
-  hello:
-    handler: src/hello.handler
-    events:
-      - http:
+ functions:
+   hello:
+     handler: src/hello.handler
+     events:
+       - http:
           path: /
           method: get
-  insertItem:
-    handler: src/insertItem.handler
-    events:
-      - http:
+   insertItem:
+     handler: src/insertItem.handler
+     events:
+       - http:
           path: /item
           method: post
-  fetchItems:
-    handler: src/fetchItems.handler
-    events:
+   fetchItems:
+     handler: src/fetchItems.handler
+     events:
       - http:
           path: /items
           method: get
-  fetchItem:
-    handler: src/fetchItem.handler
-    events:
+   fetchItem:
+     handler: src/fetchItem.handler
+     events:
       - http:
           path: /items/{id}
           method: get
-  updateItem:
-    handler: src/updateItem.handler
-    events:
+   updateItem:
+     handler: src/updateItem.handler
+     events:
       - http:
           path: /items/{id}
           method: put
